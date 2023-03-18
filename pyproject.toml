@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "chatgpt-test-generator"
+version = "0.1.0"
+description = ""
+authors = ["Furkan Melih Ercan <furkan.ercan@b2metric.com>"]
+readme = "README.md"
+packages = [{include = "chatgpt_test_generator"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pytest = "^7.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
