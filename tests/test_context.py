@@ -1,17 +1,13 @@
-from chatgpt_test_generator import function_registerer
+from chatgpt_test_generator import generate_tests_on_background
 
 
-def test_context():
+# GPT ->
+def deneme(a=0):
+    return 1 / a
 
-    @function_registerer
-    def some_method(a, b):
-        return a + b
 
-    some_method(1, 2)
-
-    from chatgpt_test_generator.context import _HASHMAP, _GENERATED_FUNCTIONS_STACK
-
-    print(_HASHMAP["some_method"])
-    assert type(_HASHMAP["some_method"]) is str
-    assert _GENERATED_FUNCTIONS_STACK[0] == "some_method"
+# GPT ->
+def test_deneme():
+    import re
+    pattern = r"(?<=\n)# GPT ->\s*(def .+):"
 
