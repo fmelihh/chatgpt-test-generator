@@ -24,11 +24,7 @@ def load_env() -> Dict[str, Any]:
 
 
 def get_root_path() -> str:
-    root_path = os.path.dirname(os.path.abspath(__file__))
-    while os.path.exists(os.path.join(root_path, 'main.py')) is False:
-        root_path = os.path.dirname(root_path)
-
-    return root_path
+    return os.path.abspath(os.curdir)
 
 
 def load_declarations(root_path: str = None) -> List[Any]:
