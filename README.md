@@ -56,6 +56,7 @@ If main.py is run, it will create tests for functions with GPT -> syntax under /
     └── test_main.py
 ```
 
+__test_main.py__
 ```
 from main import search
 
