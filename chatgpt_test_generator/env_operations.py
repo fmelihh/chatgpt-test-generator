@@ -3,7 +3,10 @@ import toml
 from typing import Dict, Any, List
 
 _CHATGPT_API_KEY_CONSTANT = "CHATGPT_API_KEY"
-_EXCLUDE_FILE_PATHS = ("chatgpt_test_generator", "tests")
+# _EXCLUDE_FILE_PATHS = ("chatgpt_test_generator", "tests")
+_EXCLUDE_FILE_PATHS = (
+    "chatgpt_test_generator",
+)
 
 
 def load_env() -> Dict[str, Any]:
@@ -46,3 +49,10 @@ def load_declarations(root_path: str = None) -> List[Any]:
             folders.extend(children)
 
     return folders
+
+
+def save_file_to_declared_path(responses: Dict[str, List[str]], test_file_path: str):
+    for filename, declared_functions in responses.items():
+        with open(f"{test_file_path}/{filename}.py", "w") as python_file:
+            python_file.write('\n\n'.join(declared_functions))
+
