@@ -18,7 +18,8 @@ def load_env() -> Dict[str, Any]:
 
     return {
         "TEST_FILE_PATH": f"{root_path}/tests",
-        "CHATGPT_API_KEY": settings_conf["default"]["CHATGPT_API_KEY"]
+        "CHATGPT_API_KEY": settings_conf["default"]["CHATGPT_API_KEY"],
+        "ROOT_PATH": root_path,
     }
 
 
@@ -51,8 +52,33 @@ def load_declarations(root_path: str = None) -> List[Any]:
     return folders
 
 
-def save_file_to_declared_path(responses: Dict[str, List[str]], test_file_path: str):
+def convert_full_path_to_relative_path(root_path: str, function_path: str, function_name: str) -> str:
+    function_path = (
+        function_path
+        .replace(root_path + "/", "")
+        .strip()
+    )
+    splitted_path = function_path.split("/")
+    converted_path = list()
+    for idx, element in enumerate(splitted_path):
+        if element.endswith(".py"):
+            element = element.split(".")[0]
+
+        converted_path.append(element)
+
+    converted_path = '.'.join(converted_path)
+    return f"from {converted_path} import {function_name}"
+
+
+def save_file_to_declared_path(
+        responses: Dict[str, List[str]], functions_import_statements: Dict[str, List[str]], test_file_path: str):
     for filename, declared_functions in responses.items():
+        import_statements = functions_import_statements[filename]
+
+        import_statements = '\n'.join(import_statements)
+        converted_functions = '\n\n'.join(declared_functions)
+        file_text = f"{import_statements}\n{converted_functions}"
+
         with open(f"{test_file_path}/{filename}.py", "w") as python_file:
-            python_file.write('\n\n'.join(declared_functions))
+            python_file.write(file_text)
 
