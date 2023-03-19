@@ -2,6 +2,17 @@
 
 Easy-to-use test generation tool. Powered by ChatGPT.
 
+### **Installation**
+
+https://pypi.org/project/chatgpt-test-generator/
+
+> pip install chatgpt-test-generator
+
+or
+
+> poetry add chatgpt-test-generator
+
+
 ###  **Project Structure:** 
 ```
 ├── main.py
