@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "chatgpt-test-generator"
 version = "0.1.0"
-description = ""
+description = "AI based test generation tool."
 authors = ["Furkan Melih Ercan <furkan.ercan@b2metric.com>"]
 readme = "README.md"
 packages = [{include = "chatgpt_test_generator"}]
