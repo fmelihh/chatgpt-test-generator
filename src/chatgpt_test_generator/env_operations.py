@@ -3,8 +3,8 @@ import toml
 from typing import Dict, Any, List
 
 _CHATGPT_API_KEY_CONSTANT = "CHATGPT_API_KEY"
-# _EXCLUDE_FILE_PATHS = ("chatgpt_test_generator", "tests")
 _EXCLUDE_FILE_PATHS = (
+    "tests",
     "chatgpt_test_generator",
 )
 
